@@ -7,8 +7,53 @@
         </title>
     </head>
     <body>
-        <p>
-            Connect a medication to a patient. 
-        </p>
+        <table>
+            <caption>
+                Read the first name and last name of patient and their id.
+            </caption>
+            <thead>
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Id
+                    </th>
+                </tr>
+                <tbody>
+
+                </tbody>
+            </thead>
+        </table>
+        <br>
+        <table>
+            <caption>
+                Read the medication name and id.
+            </caption>
+            <thead>
+                <tr>
+                    <th>
+                        Med Name
+                    </th>
+                    <th>
+                        Id
+                    </th>
+                </tr>
+                <tbody>
+                    
+                </tbody>
+            </thead>
+        </table>
     </body>
+    <br>
+    <p>Create a connection between a patient and a medication</p>
+        <label for="patientID"> patient ID</label>
+        <input type="number" id="patientID" name="patientID">
+        <label for="medID">med ID</label>
+        <input type="number" id="medID" name="medID">
+        <br>
+        <button>Add connection between a patient and medication</button>
 </html>
