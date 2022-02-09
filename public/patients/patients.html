@@ -19,8 +19,21 @@
         <br>
         <button>Add a new patient</button>
     </body>
-
+    <br>
+    <br>
+    <br>
         <style>
+            #patientInput {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 20%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+            }
+
             table {
               font-family: arial, sans-serif;
               border-collapse: collapse;
@@ -40,18 +53,22 @@
             </head>
             <body>
             
-            <h2>Patients</h2>
+            <!-- Add table for Pateints that can be sortable by clicking on the header -->
             
-            <table>
+            <h2>Patients</h2>
+            <input type="text" id="patientInput" onkeyup="sortFunction()" placeholder="Search for patient by last name.." title="Type in a name">
+            <table id = "patientTable">
+            <thead>
               <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Birth Date</th>
-                <th>Is Currently Admitted?</th>
+                <th onclick="sortTable(0)">ID</th>
+                <th onclick="sortTable(1)">First Name</th>
+                <th onclick="sortTable(2)">Last Name</th>
+                <th onclick="sortTable(3)">Birth Date</th>
+                <th onclick="sortTable(4)">Is Currently Admitted?</th>
                 <th>Delete</th>
                 <th>Update</th>
               </tr>
+            </thead>
               <tr>
                 <td>1</td>
                 <td>Danny</td>
@@ -80,4 +97,64 @@
                 <td><a><u>Update</u></a></td>
               </tr>
             </table>   
+            <!-- Sort function for patient table -->
+            <!-- Add search function to table by last name of patient -->
+            <script>
+                function sortFunction() {
+                  var input, filter, table, tr, td, i, txtValue;
+                  input = document.getElementById("patientInput");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("patientTable");
+                  tr = table.getElementsByTagName("tr");
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[2];
+                    if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    }       
+                  }
+                }
+                
+                function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("patientTable");
+                switching = true;
+                dir = "asc";
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                        }
+                    }
+                    }
+                    if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount ++;
+                    } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                    }
+                }
+                }
+                </script>
+
 </html>
