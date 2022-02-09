@@ -1,52 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <title>
-            Connect a medication to a patient
-        </title>
-    </head>
-    <body>
+        <!-- Add table for Medications-->
+        <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+            </style>
+            </head>
+            <body>
+            
+            <h2>Medications</h2>
+            
+            <table>
+              <tr>
+                <th>Medication ID</th>
+                <th>Medication Name</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Levothyroxine</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Lisinopril</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Metformin</td>
+              </tr>
+            </table>   
+        <!-- Add table for Patients-->
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+        </head>
+        <body>
+        
+        <h2>Patients</h2>
+        
         <table>
-            <caption>
-                Read the first name and last name of patient and their id.
-            </caption>
-            <thead>
-                <tr>
-                    <th>
-                        First Name
-                    </th>
-                    <th>
-                        Last Name
-                    </th>
-                    <th>
-                        Id
-                    </th>
-                </tr>
-                <tbody>
-
-                </tbody>
-            </thead>
-        </table>
-        <br>
-        <table>
-            <caption>
-                Read the medication name and id.
-            </caption>
-            <thead>
-                <tr>
-                    <th>
-                        Med Name
-                    </th>
-                    <th>
-                        Id
-                    </th>
-                </tr>
-                <tbody>
-                    
-                </tbody>
-            </thead>
-        </table>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birth Date</th>
+            <th>Is Currently Admitted?</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Danny</td>
+            <td>Jennings</td>
+            <td>01/18/1979</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Evan</td>
+            <td>Greer</td>
+            <td>06/12/1985</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Alice</td>
+            <td>Tanner</td>
+            <td>11/12/1992</td>
+            <td>No</td>
+          </tr>
+        </table>   
     </body>
     <br>
     <p>Create a connection between a patient and a medication</p>
@@ -56,4 +104,50 @@
         <input type="number" id="medID" name="medID">
         <br>
         <button>Add connection between a patient and medication</button>
+
+    	<!-- Add table for Relationship table between medID and patientID -->
+        <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+            </style>
+            </head>
+            <body>
+            
+            <h2>Medication and Patient Table</h2>
+            
+            <table>
+              <tr>
+                <th>Medication ID</th>
+                <th>Patient ID</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>1</td>
+              </tr>
+            </table>   
 </html>
