@@ -8,6 +8,18 @@
         <link href="../style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+
+        <!-- Navigation bar to other pages -->
+        <div class="topnav">
+          <a href="../index.html">Home</a>
+          <a href="../departments/departments.html">Add/Edit Departments</a>
+          <a href="../doctors/doctors.html">Add/Edit Doctors</a>
+          <a href="../medications/medications.html">Add/Edit Medications</a>
+          <a href="../patients/patients.html">Add/Edit/Search Patients</a>
+          <a href="../medpatients/medpatients.html">Connect a Medication to a Patient</a>
+        </div>
+
+
         <p>Create a Patient</p>
         <label for="firstName">First Name</label>
         <input type="text" id="firstName" name="firstName">
@@ -29,7 +41,7 @@
             
             
             <h2>Patients</h2>
-            <!-- Search bar to search patient by last name -->
+            <!-- Search bar to search patient by name or DOB -->
             <input type="text" id="patientInput" onkeyup="searchFunction()" placeholder="Search by name or DOB" title="Type in a name">
             
             
