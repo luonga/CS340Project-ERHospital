@@ -1,10 +1,15 @@
 --Clear any existing database
---and create the tables.  
-
+  
+DROP TABLE IF EXISTS MedPatients;
 DROP TABLE IF EXISTS Patients;
+DROP TABLE IF EXISTS Doctors;
+DROP TABLE IF EXISTS Medications;
+DROP TABLE IF EXISTS Departments;
 
+--Create the tables.
 CREATE TABLE Patients (
     patientID int(11) NOT NULL AUTO_INCREMENT,
+    doctorID int(11),
     firstName varchar(255) NOT NULL,
     lastName varchar(255) NOT NULL,
     birthdate DATE NOT NULL,
@@ -12,51 +17,52 @@ CREATE TABLE Patients (
     PRIMARY KEY (patientID)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS Doctors;
+
 
 CREATE TABLE Doctors (
     doctorID int(11) NOT NULL AUTO_INCREMENT,
+    departmentID int(11),
     firstName varchar(255) NOT NULL,
     lastName varchar(255) NOT NULL,
     PRIMARY KEY (doctorID)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS Medications;
 
-CREATE Medications (
-    medID int(11) NOT NULL,
+
+CREATE TABLE Medications (
+    medID int(11) NOT NULL AUTO_INCREMENT,
     medName varchar(255) NOT NULL,
     PRIMARY KEY (medID)
 ) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS Departments;
 
-CREATE Departments (
-    departmentID int(11) NOT NULL,
+
+CREATE TABLE Departments (
+    departmentID int(11) NOT NULL AUTO_INCREMENT,
     deparmentName varchar(255) NOT NULL,
-    capacity int(11)
+    capacity int(11),
     PRIMARY KEY (departmentID)
 ) ENGINE=InnoDB;
-
-DROP TABLE IF EXISTS MedPatients;
 
 CREATE TABLE MedPatients (
     medID int(11) NOT NULL,
     patientID int(11) NOT NULL,
     PRIMARY KEY (medID, patientID),
-    CONSTRAINT medPat_fk_1 FOREIGN KEY medID REFERENCES Medications,
-    CONSTRAINT medPat_fk_2 FOREIGN KEY patientID REFERENCES Patients
+    CONSTRAINT fk_mid FOREIGN KEY (medID) REFERENCES Medications (medID)
+    ON DELETE CASCADE,
+    CONSTRAINT fk_pid FOREIGN KEY (patientID) REFERENCES Patients (patientID)
+    ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 --Add the relationships between tables.  
 
 ALTER TABLE Patients
-ADD CONSTRAINT fk_pat FOREIGN KEY doctorID
-REFERENCES Doctors ON DELETE CASCADE; 
+ADD CONSTRAINT fk_pat FOREIGN KEY (doctorID)
+REFERENCES Doctors(doctorID) ON DELETE CASCADE; 
 
 ALTER TABLE Doctors
-ADD CONSTRAINT fk_doc FOREIGN KEY departmentID
-REFERENCES Departments ON DELETE CASCADE;
+ADD CONSTRAINT fk_doc FOREIGN KEY (departmentID)
+REFERENCES Departments(departmentID) ON DELETE CASCADE;
 
 
 
