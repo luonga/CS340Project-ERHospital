@@ -11,6 +11,8 @@ INSERT INTO Departments (deparmentName, capacity)
 VALUES (:deparmentNameInput, :capacityInput);
 
 -- Department Update operation.  
-UPDATE Departments SET deparmentName=:deparmentNameInput, capacity=:capacityInput WHERE departmentNameID = :departmentIDForm
+UPDATE Departments SET deparmentName=:deparmentNameInput, capacity=:capacityInput WHERE departmentNameID = :departmentIDForm;
 
 -- Department Delete operation
+
+DELETE FROM Departments WHERE departmentID =: departmentIDfromTable;
