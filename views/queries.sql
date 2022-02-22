@@ -16,3 +16,9 @@ UPDATE Departments SET deparmentName=:deparmentNameInput, capacity=:capacityInpu
 -- Department Delete operation
 
 DELETE FROM Departments WHERE departmentID =: departmentIDfromTable;
+
+-- Doctors Page
+
+-- Doctors Table
+SELECT firstName, lastName, departmentID FROM Doctors;
+

@@ -68,23 +68,25 @@ REFERENCES Departments(departmentID) ON DELETE CASCADE;
 
 --Insert dummy values into the Patients table
 
+INSERT INTO Departments (deparmentName, capacity)
+VALUES ('Radiology', 1000),
+('Cardiology', 525),
+('ICU', 1500);
+
+INSERT INTO Doctors (firstName, lastName, departmentID)
+VALUES ('Gregory', 'House', 3),
+('James', 'Wilson', 2),
+('Lisa', 'Cuddy', 2);
+
 INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted)
 VALUES ('Danny', 'Jennings', '1979-01-18', 1),
 ('Evan', 'Greer', '1985-06-12', 1),
 ('Alice', 'Tanner', '1992-11-12', 0);
-
-INSERT INTO Doctors (firstName, lastName)
-VALUES ('Gregory', 'House'),
-('James', 'Wilson'),
-('Lisa', 'Cuddy');
 
 INSERT INTO Medications (medName)
 VALUES ('Levothyroxine'),
 ('Lisinopril'),
 ('Metformin');
 
-INSERT INTO Departments (deparmentName, capacity)
-VALUES ('Radiology', 1000),
-('Cardiology', 525),
-('ICU', 1500);
+
 
