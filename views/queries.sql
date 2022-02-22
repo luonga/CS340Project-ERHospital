@@ -32,3 +32,15 @@ UPDATE Doctors SET firstName = :firstNameInput, lastName = :lastNameInput, depar
 -- Delete Doctor
 DELETE FROM Doctors WHERE doctorID = :doctorIDfromTable;
 
+-- Medication Page
+
+-- Medication Table
+SELECT medID, medName FROM Medications;
+
+-- Create Medication Form
+INSERT INTO Medications (medName)
+VALUES (:medNameInput);
+
+-- Delete Medication
+DELETE FROM Medications WHERE medID = :medIDfromTable;
+
