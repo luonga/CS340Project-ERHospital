@@ -22,3 +22,13 @@ DELETE FROM Departments WHERE departmentID =: departmentIDfromTable;
 -- Doctors Table
 SELECT firstName, lastName, departmentID FROM Doctors;
 
+-- Doctor Create Form
+INSERT INTO Doctors (firstName, lastName, departmentID)
+VALUES (:firstNameInput, :lastNameInput, :departmentIDfromDropdownList);
+
+-- Update Doctor
+UPDATE Doctors SET firstName = :firstNameInput, lastName = :lastNameInput, departmentID = :departmentIDfromDropdownList;
+
+-- Delete Doctor
+DELETE FROM Doctors WHERE doctorID = :doctorIDfromTable;
+
