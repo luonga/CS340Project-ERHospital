@@ -44,3 +44,27 @@ VALUES (:medNameInput);
 -- Delete Medication
 DELETE FROM Medications WHERE medID = :medIDfromTable;
 
+-- Medication Patient Page
+
+-- Medication Table 
+SELECT medID, medName FROM Medications;
+
+-- Patient Table
+SELECT patientID, firstName, lastName, birthdate, isAdmitted, doctorID FROM Patients;
+
+-- Medication Patient Table
+SELECT firstName.Patients, lastName.Patients, patientID, medID, medName.Medications
+FROM MedPatients INNER JOIN Patients ON patientID.MedPatients = patientID.Patients
+INNER JOIN Medications ON medID.MedPatients = medID.Medications; 
+
+-- Create a new entry in the MedPatients table
+INSERT INTO MedPatients (patientID, medID)
+VALUES (:patientIDfromInput, :medIDfromInput);
+
+-- Update the MedPatients table
+UPDATE MedPatients SET patientID = :patientIDfromUpdateInput, medID = :medIDfromUpdateInput;
+
+-- Delete a connection
+DELETE FROM MedPatients WHERE (medID, patientID) = (:medIDfromTable, :patientIDfromTable);
+
+
