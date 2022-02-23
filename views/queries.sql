@@ -27,7 +27,8 @@ INSERT INTO Doctors (firstName, lastName, departmentID)
 VALUES (:firstNameInput, :lastNameInput, :departmentIDfromDropdownList);
 
 -- Update Doctor
-UPDATE Doctors SET firstName = :firstNameInput, lastName = :lastNameInput, departmentID = :departmentIDfromDropdownList;
+UPDATE Doctors SET firstName = :firstNameInput, lastName = :lastNameInput, departmentID = :departmentIDfromDropdownList
+WHERE doctorID = :doctorIDfromForm;
 
 -- Delete Doctor
 DELETE FROM Doctors WHERE doctorID = :doctorIDfromTable;
@@ -40,6 +41,9 @@ SELECT medID, medName FROM Medications;
 -- Create Medication Form
 INSERT INTO Medications (medName)
 VALUES (:medNameInput);
+
+-- Update medication
+UPDATE Medications SET medName = :medNameFromInput WHERE medID = :medIDfromForm;
 
 -- Delete Medication
 DELETE FROM Medications WHERE medID = :medIDfromTable;
@@ -62,9 +66,26 @@ INSERT INTO MedPatients (patientID, medID)
 VALUES (:patientIDfromInput, :medIDfromInput);
 
 -- Update the MedPatients table
-UPDATE MedPatients SET patientID = :patientIDfromUpdateInput, medID = :medIDfromUpdateInput;
+UPDATE MedPatients SET patientID = :patientIDfromUpdateInput, medID = :medIDfromUpdateInput
+WHERE (medID, patientID) = (:medIDfromInput,:patientIDfromInput);
 
 -- Delete a connection
 DELETE FROM MedPatients WHERE (medID, patientID) = (:medIDfromTable, :patientIDfromTable);
 
+-- Patient page
 
+-- Patient Table
+SELECT patientID, firstName, lastName, birthdate, isAdmitted, doctorID FROM Patients;
+
+-- Create Patient
+INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID) VALUES
+(:firstNameInput, :lastNameInput, birthdateInput, isAdmittedInput, doctorIDinput);
+
+-- Update Patient
+UPDATE Patients SET firstName = :firstNameFromInput, 
+lastName = :lastNameFromInput, birthdate = :birthdateInput, 
+isAdmitted = :isAdmittedInput, doctorID = :doctorIDinput 
+WHERE patientID = patientIDfromForm; 
+
+-- Delete Patient
+DELETE FROM Patients WHERE patientID = :patientIDfromTable; 

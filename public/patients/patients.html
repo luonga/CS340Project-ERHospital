@@ -29,6 +29,8 @@
         <input type="date" id="birthdate" name="birthdate">
         <label for="isAdmitted">Is admitted to hospital</label>
         <input type="checkbox" id="isAdmitted" name="isAdmitted">
+        <label for="doctorID">Doctor ID</label>
+        <input type="number" id="doctorID" name="doctorID">
         <br>
         <button>Add a new patient</button>
     </body>
@@ -57,6 +59,7 @@
                 <th onclick="sortTable(2)">Last Name</th>
                 <th onclick="sortTable(3)">Birth Date</th>
                 <th onclick="sortTable(4)">Is Currently Admitted?</th>
+                <th>Doctor ID</th>
                 <th>Delete</th>
                 <th>Update</th>
               </tr>
@@ -67,8 +70,9 @@
                 <td>Jennings</td>
                 <td>01/18/1979</td>
                 <td>Yes</td>
+                <td>3</td>
                 <td><button>Delete</button></td>
-                <td><a><u>Update</u></a></td>
+                <td><a href="./update_patients.html"><u>Update</u></a></td>
               </tr>
               <tr>
                 <td>2</td>
@@ -76,8 +80,9 @@
                 <td>Greer</td>
                 <td>06/12/1985</td>
                 <td>Yes</td>
+                <td>3</td>
                 <td><button>Delete</button></td>
-                <td><a><u>Update</u></a></td>
+                <td><a href="./update_patients.html"><u>Update</u></a></td>
               </tr>
               <tr>
                 <td>3</td>
@@ -85,8 +90,9 @@
                 <td>Tanner</td>
                 <td>11/12/1992</td>
                 <td>No</td>
+                <td>1</td>
                 <td><button>Delete</button></td>
-                <td><a><u>Update</u></a></td>
+                <td><a href="./update_patients.html"><u>Update</u></a></td>
               </tr>
             </table>   
             <!-- Sort function for patient table -->
