@@ -8,6 +8,7 @@ const PORT = 2324;
 
 const express = require("express");
 const app = express();
+const db = require('./database/db-connector')
 
 app.use(express.static('public'));
 
@@ -17,8 +18,13 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 
 app.get('/handle', function(req, res)
     {
-        res.render('index');                    // Note the call to render() and not send(). Using render() ensures the templating engine
-    });                                         // will process this file, before sending the finished HTML to the client.
+        let query1 = "SELECT * FROM bsg_people;";               // Define our query
+
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+            res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
+        });                      
+    });                                         
 
 //Listening
 app.listen(PORT, () => {
