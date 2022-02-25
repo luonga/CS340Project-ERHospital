@@ -18,7 +18,7 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 
 app.get('/handle', function(req, res)
     {
-        let query1 = "SELECT * FROM bsg_people;";               // Define our query
+        let query1 = "SELECT * FROM Medications;";               // Define our query
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 

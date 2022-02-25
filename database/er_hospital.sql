@@ -39,7 +39,7 @@ CREATE TABLE Medications (
 
 CREATE TABLE Departments (
     departmentID int(11) NOT NULL AUTO_INCREMENT,
-    deparmentName varchar(255) NOT NULL,
+    departmentName varchar(255) NOT NULL,
     capacity int(11),
     PRIMARY KEY (departmentID)
 ) ENGINE=InnoDB;
@@ -68,7 +68,7 @@ REFERENCES Departments(departmentID) ON DELETE CASCADE;
 
 --Insert dummy values into the Patients table
 
-INSERT INTO Departments (deparmentName, capacity)
+INSERT INTO Departments (departmentName, capacity)
 VALUES ('Radiology', 1000),
 ('Cardiology', 525),
 ('ICU', 1500);
