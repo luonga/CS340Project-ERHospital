@@ -2,6 +2,11 @@ p {
     font-size: 30px;
 }
 
+/* form {
+  border: 1px solid grey;
+  padding: 12px 20px;
+} */
+
 #patientInput {
 background-image: url('/css/searchicon.png');
 background-position: 10px 10px;

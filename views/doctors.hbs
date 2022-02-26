@@ -1,23 +1,26 @@
 {{> header }}
-<p>Doctors</p>
+<p>Current Doctors at ER Hospital</p>
 
-<p>Create a doctor</p>
+{{!-- <p>Create a doctor</p> --}}
 
 <form id="add-doctor-form" method="POST" action="/add-doctor-form">
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" name="firstName">
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" name="lastName">
-    <label for="departmentID">Department</label>
+    <fieldset>
+        <legend>Create a Doctor</legend>
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName">
+        <label for="departmentID">Department</label>
 
-    <select name="departmentID" id="departmentID">
-        <option value="">Select a Department</option>
-            {{#each depts}}
-        <option value="{{this.departmentID}}">{{this.departmentName}}</option>
-            {{/each}}
-    </select>
-    
-    <input type="submit">
+        <select name="departmentID" id="departmentID">
+            <option value="">Select a Department</option>
+                {{#each depts}}
+            <option value="{{this.departmentID}}">{{this.departmentName}}</option>
+                {{/each}}
+        </select>
+
+        <input type="submit">
+    </fieldset>
 </form>
 {{!-- The Data from our Database --}}
 {{!-- Create a table --}}
