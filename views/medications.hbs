@@ -23,6 +23,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            {{>edit_delete_col_header}}
         </tr>
     </thead>
 
@@ -34,6 +35,8 @@
         <tr>
             <td>{{this.medID}}</td>
             <td>{{this.medName}}</td>
+            <td><button>Delete</button></td>
+            <td><a>Update</a></td>
         </tr>
         {{/each}}
     </tbody>

@@ -78,15 +78,18 @@ VALUES ('Gregory', 'House', 3),
 ('James', 'Wilson', 2),
 ('Lisa', 'Cuddy', 2);
 
-INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted)
-VALUES ('Danny', 'Jennings', '1979-01-18', 1),
-('Evan', 'Greer', '1985-06-12', 1),
-('Alice', 'Tanner', '1992-11-12', 0);
+INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID)
+VALUES ('Danny', 'Jennings', '1979-01-18', 1, 3),
+('Evan', 'Greer', '1985-06-12', 1, 3),
+('Alice', 'Tanner', '1992-11-12', 0, 1);
 
 INSERT INTO Medications (medName)
 VALUES ('Levothyroxine'),
 ('Lisinopril'),
 ('Metformin');
+
+INSERT INTO MedPatients (patientID, medID)
+VALUES (3,1), (2,1), (3,2), (1,3);
 
 
 

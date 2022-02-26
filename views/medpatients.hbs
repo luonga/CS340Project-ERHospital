@@ -1,4 +1,13 @@
 {{> header }}
+
+<p>Create a connection between a patient and a medication</p>
+    <label for="patientID"> patient ID</label>
+    <input type="number" id="patientID" name="patientID">
+    <label for="medID">med ID</label>
+    <input type="number" id="medID" name="medID">
+    <br>
+    <button>Add connection between a patient and medication</button>
+
 <p>MedPatients</p>
 
 {{!-- The Data from our Database --}}
@@ -17,6 +26,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            {{>edit_delete_col_header}}
         </tr>
     </thead>
 
@@ -26,8 +36,13 @@
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
-            <td>{{this.medID}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
             <td>{{this.patientID}}</td>
+            <td>{{this.medID}}</td>
+            <td>{{this.medName}}</td>
+            <td><button>Delete</button></td>
+            <td><a><u>Update</u></a></td>  
         </tr>
         {{/each}}
     </tbody>

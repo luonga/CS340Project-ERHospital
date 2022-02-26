@@ -2,12 +2,20 @@
 <p>Departments</p>
 
 <p>Create a department</p>
+<form id="add-department-form" method="POST" action="/add-department-form">
+    <label for="departmentName">Department Name</label> </label>
+    <input type="text" name="departmentName" id="departmentName">
+    <label for="capacity">Capacity </label>
+    <input type="number" name="capacity" id="capacity">
+    <input type="submit">
+</form>
+{{!-- <form></form>
         <label for="departmentName">Department Name</label>
         <input type="text" id="departmentName" name="departmentName">
         <label for="capacity">Capacity</label>
         <input type="number" id="capacity" name="capacity">
         <br>
-        <button>Add a new department</button>
+        <button>Add a new department</button> --}}
 {{!-- The Data from our Database --}}
 {{!-- Create a table --}}
 <table>
@@ -23,6 +31,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            {{>edit_delete_col_header}}
         </tr>
     </thead>
 
@@ -35,6 +44,8 @@
             <td>{{this.departmentID}}</td>
             <td>{{this.departmentName}}</td>
             <td>{{this.capacity}}</td>
+            <td><button>Delete</button></td>
+            <td><a>Update</a></td>
         </tr>
         {{/each}}
     </tbody>

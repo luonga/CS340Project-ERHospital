@@ -29,6 +29,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            {{>edit_delete_col_header}}
         </tr>
     </thead>
 
@@ -39,11 +40,13 @@
         {{#each data}}
         <tr>
             <td>{{this.patientID}}</td>
-            <td>{{this.doctorID}}</td>
             <td>{{this.firstName}}</td>
             <td>{{this.lastName}}</td>
             <td>{{this.birthdate}}</td>
             <td>{{this.isAdmitted}}</td>
+            <td>{{this.doctorID}}</td>
+            <td><button>Delete</button></td>
+            <td><a>Update</a></td>
         </tr>
         {{/each}}
     </tbody>
