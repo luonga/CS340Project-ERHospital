@@ -3,11 +3,11 @@
 -- Main Department table
 
 -- Department Read operation
-SELECT departmentID, deparmentName, capacity 
+SELECT departmentID, departmentName, capacity 
 FROM Departments;
 
 -- Department Create operation from input fields.
-INSERT INTO Departments (deparmentName, capacity)
+INSERT INTO Departments (departmentName, capacity)
 VALUES (:deparmentNameInput, :capacityInput);
 
 -- Department Update operation.  
