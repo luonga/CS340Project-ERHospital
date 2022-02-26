@@ -47,10 +47,18 @@ app.get('/medications', function(req, res)
 app.get('/doctors', function(req, res)
 {
     let query1 = "SELECT doctorID, firstName, lastName, departmentID FROM Doctors;";               // Define our query
+    let query2 = `SELECT departmentID, departmentName FROM Departments;`
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
+        
+        let doctors = rows;
 
-        res.render('doctors', {title: 'Doctors', data: rows});                  // Render the index.hbs file, and also send the renderer
+        db.pool.query(query2, function(error, rows, fields){
+            
+            let deparments = rows;
+            res.render('doctors', {title: 'Doctors', data: doctors, depts: deparments});
+        })
+
     });                      
 });
 
@@ -110,6 +118,29 @@ app.post('/add-department-form', (req, res)=>{
             res.redirect('/departments');
         }
     })
+});
+
+app.post('/add-doctor-form', (req, res)=>{
+    let query1 = `INSERT INTO Doctors (firstName, lastName, departmentID)
+    VALUES (?, ?, ?);`;
+    let inserts = [req.body.firstName, req.body.lastName, req.body.departmentID];
+
+    db.pool.query(query1, inserts, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/doctors');
+        }
+    });
 });
 
 //Listening

@@ -2,22 +2,23 @@
 <p>Doctors</p>
 
 <p>Create a doctor</p>
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName">
-        <br>
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName">
-        <br>
-        <label for="departmentID">Department</label>
-        <input type="text" list="departments">
-        <datalist id="departments">
-          <option value="Radiology">
-          <option value="Cardiology">
-          <option value="ICU">
-        </datalist>
-        <br>
-        <button>Add a new doctor</button>
 
+<form id="add-doctor-form" method="POST" action="/add-doctor-form">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName">
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName">
+    <label for="departmentID">Department</label>
+
+    <select name="departmentID" id="departmentID">
+        <option value="">Select a Department</option>
+            {{#each depts}}
+        <option value="{{this.departmentID}}">{{this.departmentName}}</option>
+            {{/each}}
+    </select>
+    
+    <input type="submit">
+</form>
 {{!-- The Data from our Database --}}
 {{!-- Create a table --}}
 <table id="Doctors">
@@ -53,3 +54,5 @@
         {{/each}}
     </tbody>
 </table>
+
+
