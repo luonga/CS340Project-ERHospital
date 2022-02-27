@@ -1,12 +1,14 @@
 {{> header }}
-<p>Medications</p>
+<p>Available Medications at ER Hospital</p>
+    <form id="add-medication-form" method="POST" action="/add-medication-form">
 
-        <p>Create a Medication</p>
-        <label for="medName">Medication Name</label>
-        <input type="text" id="medName" name="medName">
-        <br>
-        <button>Add a new medication</button>
-    
+        <fieldset>
+            <legend>Create a Medication</legend>
+            <label for="medName">Medication Name</label>
+            <input type="text" id="medName" name="medName">
+            <input type="submit">
+        </fieldset>
+    </form>
 {{!-- The Data from our Database --}}
 
 {{!-- Create a table --}}

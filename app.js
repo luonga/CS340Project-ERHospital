@@ -75,11 +75,17 @@ app.get('/departments', function(req, res)
 app.get('/patients', function(req, res)
 {
     let query1 = `SELECT patientID, firstName, lastName, 
-    birthdate, isAdmitted, doctorID FROM Patients;`;               // Define our query
+    birthdate, isAdmitted, doctorID FROM Patients;`;          
+    let query2 = `SELECT doctorID, firstName, lastName FROM Doctors;`
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
+        let patients = rows;
 
-        res.render('patients', {title: 'Patients',data: rows});                  // Render the index.hbs file, and also send the renderer
+        db.pool.query(query2, function(error, rows, fields){
+            let doctors = rows;
+            res.render('patients', {title: 'Patients', data: patients, docs: doctors}); 
+        });
+
     });                      
 });
 
@@ -139,6 +145,56 @@ app.post('/add-doctor-form', (req, res)=>{
         else
         {
             res.redirect('/doctors');
+        }
+    });
+});
+
+app.post('/add-medication-form', (req, res)=>{
+    let query1 = `INSERT INTO Medications (medName)
+    VALUES (?);`;
+    let inserts = [req.body.medName];
+
+    db.pool.query(query1, inserts, function(error, rows, fields){
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/medications');
+        }
+    });
+
+});
+
+app.post('/add-patient-form', (req,res)=>{
+    let query1 = `INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID) 
+    VALUES (?, ?, ?, ?, ?);`
+    let inserts = [
+        req.body.firstName, 
+        req.body.lastName, 
+        req.body.birthdate, 
+        req.body.isAdmitted, 
+        req.body.doctorID];
+    
+    db.pool.query(query1, inserts, function(error, rows, fields){
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/patients');
         }
     });
 });

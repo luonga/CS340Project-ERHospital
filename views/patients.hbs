@@ -1,6 +1,9 @@
 {{> header }}
-<p>Patients</p>
-<p>Create a Patient</p>
+<p>Existing and Past Patients of ER Hospital</p>
+
+<form id="add-patient-form" method="POST" action="/add-patient-form">
+    <fieldset>
+        <legend>Add a Patient</legend>
         <label for="firstName">First Name</label>
         <input type="text" id="firstName" name="firstName">
         <label for="lastName">Last Name</label>
@@ -9,10 +12,22 @@
         <input type="date" id="birthdate" name="birthdate">
         <label for="isAdmitted">Is admitted to hospital</label>
         <input type="checkbox" id="isAdmitted" name="isAdmitted">
+
         <label for="doctorID">Doctor ID</label>
-        <input type="number" id="doctorID" name="doctorID">
-        <br>
-        <button>Add a new patient</button>
+        <select name="doctorID" id="doctorID">
+            <option value="">Select a Doctor</option>
+                {{#each docs}}
+            <option value="{{this.doctorID}}">{{this.firstName}} {{this.lastName}}</option>
+                {{/each}}
+        </select>
+
+        <input type="submit">
+    </fieldset>
+</form>
+
+<h2>Patients</h2>
+            <!-- Search bar to search patient by name or DOB -->
+            <input type="text" id="patientInput" onkeyup="searchFunction()" placeholder="Search by name or DOB" title="Type in a name">   
 {{!-- The Data from our Database --}}
 
 {{!-- Create a table --}}
@@ -51,3 +66,4 @@
         {{/each}}
     </tbody>
 </table>
+
