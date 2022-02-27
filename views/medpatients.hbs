@@ -1,14 +1,29 @@
 {{> header }}
+<p>Patients and the medications they are taking.</p>
 
-<p>Create a connection between a patient and a medication</p>
-    <label for="patientID"> patient ID</label>
-    <input type="number" id="patientID" name="patientID">
-    <label for="medID">med ID</label>
-    <input type="number" id="medID" name="medID">
-    <br>
-    <button>Add connection between a patient and medication</button>
+<form id="add-medpatient-form" method="POST" action="/add-medpatient-form">
 
-<p>MedPatients</p>
+    <fieldset>
+        <legend>Add a connection between a patient and a medication</legend>
+
+        <label for="patientID"> patient ID</label>
+        <select name="patientID" id="patientID">
+            <option value="">Select a Patient</option>
+                {{#each pats}}
+            <option value="{{this.patientID}}">{{this.firstName}} {{this.lastName}}</option>
+                {{/each}}
+        </select>
+
+        <label for="medID">med ID</label>
+        <select name="medID" id="medID">
+            <option value="">Select a Medication</option>
+                {{#each meds}}
+            <option value="{{this.medID}}">{{this.medName}}</option>
+                {{/each}}
+        </select>
+        <input type="submit">
+    </fieldset>
+</form>
 
 {{!-- The Data from our Database --}}
 

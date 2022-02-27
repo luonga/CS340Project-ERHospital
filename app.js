@@ -95,10 +95,24 @@ app.get('/medpatients', function(req, res)
     MedPatients.medID, medName FROM MedPatients
     INNER JOIN Patients ON MedPatients.patientID = Patients.patientID
     INNER JOIN Medications ON MedPatients.medID = Medications.medID;`;
+    let query2 = `SELECT firstName, lastName, patientID FROM Patients;`;
+    let query3 = `SELECT medName, medID FROM Medications;`;
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
+        let medpats = rows;
 
-        res.render('medpatients', {title: 'Med-Patients',data: rows});                  // Render the index.hbs file, and also send the renderer
+        db.pool.query(query2, function(error, rows, fields){
+            let patients = rows;
+            db.pool.query(query3, function(error, rows, fields){
+                let medications = rows;
+                res.render('medpatients', {
+                    title: 'Med-Patients',
+                    data: medpats,
+                    pats: patients,
+                    meds: medications
+                });
+            });
+        });
     });                      
 });
 
@@ -197,6 +211,32 @@ app.post('/add-patient-form', (req,res)=>{
             res.redirect('/patients');
         }
     });
+});
+
+app.post('/add-medpatient-form', (req, res)=>{
+    let query1 = `INSERT INTO MedPatients (patientID, medID)
+    VALUES (?, ?);`;
+    let inserts = [
+        req.body.patientID,
+        req.body.medID
+    ];
+
+    db.pool.query(query1, inserts, function(error, rows, fields){
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/medpatients');
+        }
+    });
+
 });
 
 //Listening
