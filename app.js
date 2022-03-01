@@ -64,6 +64,7 @@ app.get('/doctors', function(req, res)
 
 app.get('/departments', function(req, res)
 {
+    
     let query1 = "SELECT departmentID, departmentName, capacity FROM Departments;";               // Define our query
 
     db.pool.query(query1, function(error, rows, fields){    // Execute the query
@@ -236,6 +237,35 @@ app.post('/add-medpatient-form', (req, res)=>{
             res.redirect('/medpatients');
         }
     });
+
+app.get('/handle/:id', (req, res)=>{
+    console.log(req.params.id);
+    res.send(req.body.params.id);
+});
+
+app.delete('/delete-department/:departmentID', (req, res)=>{
+    console.log(req.params.departmentID);
+    query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
+    inserts = [req.params.departmentID]
+    
+
+    db.pool.query(query1, inserts, (error, rows, fields) => {
+
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/departments');
+        }
+    })
+});
 
 });
 
