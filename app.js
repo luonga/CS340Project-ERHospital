@@ -239,6 +239,10 @@ app.post('/add-medpatient-form', (req, res)=>{
 
 });
 
+app.get('/handle/:id', (req, res)=>{
+    res.send(req.params.id);
+});
+
 //Listening
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);
