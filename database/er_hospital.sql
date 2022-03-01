@@ -58,11 +58,11 @@ CREATE TABLE MedPatients (
 
 ALTER TABLE Patients
 ADD CONSTRAINT fk_pat FOREIGN KEY (doctorID)
-REFERENCES Doctors(doctorID) ON DELETE CASCADE; 
+REFERENCES Doctors(doctorID) ON DELETE SET NULL; 
 
 ALTER TABLE Doctors
 ADD CONSTRAINT fk_doc FOREIGN KEY (departmentID)
-REFERENCES Departments(departmentID) ON DELETE CASCADE;
+REFERENCES Departments(departmentID) ON DELETE SET NULL;
 
 
 
