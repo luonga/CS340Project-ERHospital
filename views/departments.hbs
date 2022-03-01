@@ -1,4 +1,6 @@
 {{> header }}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/deleteDepartment.js"></script>
 <p>Current Departments within ER Hospital</p>
 
 <form id="add-department-form" method="POST" action="/add-department-form">
@@ -46,7 +48,7 @@
             <td>{{this.departmentID}}</td>
             <td>{{this.departmentName}}</td>
             <td>{{this.capacity}}</td>
-            <td><button>Delete</button></td>
+            <td><button onclick="deleteDepartment({{this.departmentID}})">Delete</button></td>
             <td><a>Update</a></td>
         </tr>
         {{/each}}
