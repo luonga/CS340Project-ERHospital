@@ -10,12 +10,12 @@ const express = require("express");
 const app = express();
 const db = require('./database/db-connector');
 const path = require('path');
-const bodyParser = require('body-parser');
+
 
 // app.js - SETUP section
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(bodyParser.urlencoded({extended:true}));
+
 
 const {engine} = require('express-handlebars'); // Import express-handlebars
 
@@ -240,15 +240,9 @@ app.post('/add-medpatient-form', (req, res)=>{
         }
     });
 
-app.get('/handle/:id', (req, res)=>{
-    console.log('handle get call');
-    console.log(req.params.id);
-    res.send(req.body.params.id);
-});
-
-app.delete('/delDepartment/:id', (req, res)=>{
+app.delete('/delete-department/:departmentID', (req, res)=>{
     console.log('You made it to the delete router!');
-    console.log(req.params.id);
+    console.log(req.params.departmentID);
     query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
     inserts = [req.params.id]
     
@@ -271,10 +265,6 @@ app.delete('/delDepartment/:id', (req, res)=>{
     })
 });
 
-});
-
-app.get('/handle/:id', (req, res)=>{
-    res.send(req.params.id);
 });
 
 //Listening

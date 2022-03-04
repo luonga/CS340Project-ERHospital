@@ -1,5 +1,8 @@
 {{> header }}
 <p>Current Departments within ER Hospital</p>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/static/js/deleteDepartment.js"></script>
+{{!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
 <form id="add-department-form" method="POST" action="/add-department-form">
     <fieldset>
@@ -20,7 +23,7 @@
         <button>Add a new department</button> --}}
 {{!-- The Data from our Database --}}
 {{!-- Create a table --}}
-<table>
+<table id="department-table">
 
     {{!-- Header section --}}
     <thead>
