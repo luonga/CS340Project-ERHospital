@@ -1,27 +1,9 @@
-function deleteDepartment(departmentID) {
-    console.log('you made it here!');
-    let link = '/delete-department/';
-    link += departmentID;
-    $.ajax({
-      url: link,
+function deleteDepartment(departmentID){
+  $.ajax({
+      url: '/delete-department/' + departmentID,
       type: 'DELETE',
-      success: function(result) {
-        // deleteRow(departmentID);
-        console.log('Hooray');
-      },
-      error: function (request, status, error) {
-        alert(error);
-    }
-    });
-  };
-  
-  // function deleteRow(departmentID){
-  //     let table = document.getElementById("people-table");
-  //     for (let i = 0, row; row = table.rows[i]; i++) {
-  //        if (table.rows[i].getAttribute("data-value") == departmentID) {
-  //             table.deleteRow(i);
-  //             break;
-  //        }
-      
-  //     }
-  // };
+      success: function(result){
+          window.location.reload(true);
+      }
+  })
+};
