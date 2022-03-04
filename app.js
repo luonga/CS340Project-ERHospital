@@ -10,10 +10,12 @@ const express = require("express");
 const app = express();
 const db = require('./database/db-connector');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 // app.js - SETUP section
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended:true}));
 
 const {engine} = require('express-handlebars'); // Import express-handlebars
 
@@ -23,7 +25,7 @@ app.engine('.hbs', engine({
     defaultLayout: 'main'
 }));  // Create an instance of the handlebars engine to process templates
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
     let query1 = "SELECT * FROM Medications;";               // Define our query
@@ -239,11 +241,13 @@ app.post('/add-medpatient-form', (req, res)=>{
     });
 
 app.get('/handle/:id', (req, res)=>{
+    console.log('handle get call');
     console.log(req.params.id);
     res.send(req.body.params.id);
 });
 
-app.delete('/delete-department/:id', (req, res)=>{
+app.delete('/delDepartment/:id', (req, res)=>{
+    console.log('You made it to the delete router!');
     console.log(req.params.id);
     query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
     inserts = [req.params.id]
@@ -262,7 +266,7 @@ app.delete('/delete-department/:id', (req, res)=>{
         // presents it on the screen
         else
         {
-            res.redirect('/departments');
+            res.status(202).end();
         }
     })
 });
