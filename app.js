@@ -240,7 +240,7 @@ app.post('/add-medpatient-form', (req, res)=>{
         }
     });
 
-app.delete('/delete-department/:departmentID', (req, res)=>{
+app.delete('/delete-department/:departmentID', (req, res, next)=>{
     console.log('You made it to the delete router!');
     console.log(req.params.departmentID);
     query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
