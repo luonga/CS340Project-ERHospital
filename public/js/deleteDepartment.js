@@ -1,5 +1,5 @@
 function deleteDepartment(departmentID) {
-    console.log('you made it here');
+    console.log('you made it here!');
     let link = '/delete-department/';
     link += departmentID;
     $.ajax({
@@ -8,7 +8,10 @@ function deleteDepartment(departmentID) {
       success: function(result) {
         // deleteRow(departmentID);
         console.log('Hooray');
-      }
+      },
+      error: function (request, status, error) {
+        alert(error);
+    }
     });
   };
   

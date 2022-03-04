@@ -243,10 +243,10 @@ app.get('/handle/:id', (req, res)=>{
     res.send(req.body.params.id);
 });
 
-app.delete('/delete-department/:departmentID', (req, res)=>{
-    console.log(req.params.departmentID);
+app.delete('/delete-department/:id', (req, res)=>{
+    console.log(req.params.id);
     query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
-    inserts = [req.params.departmentID]
+    inserts = [req.params.id]
     
 
     db.pool.query(query1, inserts, (error, rows, fields) => {
