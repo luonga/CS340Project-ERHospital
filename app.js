@@ -243,35 +243,25 @@ app.get('/handle/:id', (req, res)=>{
     res.send(req.body.params.id);
 });
 
-app.delete('/delete-department/:departmentID', (req, res)=>{
-    console.log(req.params.departmentID);
-    query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
-    inserts = [req.params.departmentID]
-    
+});
 
-    db.pool.query(query1, inserts, (error, rows, fields) => {
+//delete a department
+app.delete('/delete-department/:departmentID', (req,res)=>{
+    console.log(req.params);
+    let query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
+    let inserts = [req.params.departmentID]
 
-        if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
+    db.pool.query(query1, inserts, (error,rows,fields)=>{
+        if(error) {
             res.sendStatus(400);
         }
-
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
-        // presents it on the screen
-        else
-        {
-            res.redirect('/departments');
+        else {
+            res.status(200).end();
         }
     })
+    
 });
 
-});
-
-app.get('/handle/:id', (req, res)=>{
-    res.send(req.params.id);
-});
 
 //Listening
 app.listen(PORT, () => {
