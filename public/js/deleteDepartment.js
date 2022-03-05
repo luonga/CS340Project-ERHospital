@@ -1,12 +1,14 @@
 function deleteDepartment(departmentID) {
-    console.log('you made it here');
-    let link = '/delete-department/';
-    link += departmentID;
-    $.ajax({
-      url: link,
-      type: 'DELETE',
-      success: function(result) {
-        
-      }
-    });
-  };
+  $(function (){
+      })
+      let link = '/delete-department/';
+      link += departmentID;
+      $.ajax({
+        url: link,
+        type: 'DELETE',
+        success: function(result) {
+          // deleteRow(departmentID);
+          window.location.reload(true);
+        }
+      })
+}
