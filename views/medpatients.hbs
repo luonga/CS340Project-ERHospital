@@ -1,7 +1,7 @@
 {{> header }}
 <p>Patients and the medications they are taking.</p>
 
-<form id="add-medpatient-form" method="POST" action="/add-medpatient-form">
+<form id="add-medpatient-form" method="POST" action="/creates/add-medpatient-form">
 
     <fieldset>
         <legend>Add a connection between a patient and a medication</legend>
@@ -25,16 +25,10 @@
     </fieldset>
 </form>
 
-{{!-- The Data from our Database --}}
-
-{{!-- Create a table --}}
 <table id="MedPatients">
 
-    {{!-- Header section --}}
     <thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             {{#each data.[0]}}
             <th>
@@ -45,10 +39,8 @@
         </tr>
     </thead>
 
-    {{!-- Body section --}}
     <tbody>
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
             <td>{{this.firstName}}</td>

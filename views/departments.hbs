@@ -4,7 +4,7 @@
 <script src="/static/js/deleteDepartment.js"></script>
 {{!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-<form id="add-department-form" method="POST" action="/add-department-form">
+<form id="add-department-form" method="POST" action="/creates/add-department-form">
     <fieldset>
         <legend>Create a Department</legend>
         <label for="departmentName">Department Name</label> </label>
@@ -14,22 +14,9 @@
         <input type="submit">
     </fieldset>
 </form>
-{{!-- <form></form>
-        <label for="departmentName">Department Name</label>
-        <input type="text" id="departmentName" name="departmentName">
-        <label for="capacity">Capacity</label>
-        <input type="number" id="capacity" name="capacity">
-        <br>
-        <button>Add a new department</button> --}}
-{{!-- The Data from our Database --}}
-{{!-- Create a table --}}
+
 <table id="department-table">
-
-    {{!-- Header section --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             {{#each data.[0]}}
             <th>
@@ -39,11 +26,7 @@
             {{>edit_delete_col_header}}
         </tr>
     </thead>
-
-    {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
             <td>{{this.departmentID}}</td>

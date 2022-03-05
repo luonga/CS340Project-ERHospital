@@ -3,7 +3,7 @@
 
 {{!-- <p>Create a doctor</p> --}}
 
-<form id="add-doctor-form" method="POST" action="/add-doctor-form">
+<form id="add-doctor-form" method="POST" action="/creates/add-doctor-form">
     <fieldset>
         <legend>Create a Doctor</legend>
         <label for="firstName">First Name</label>
@@ -22,15 +22,9 @@
         <input type="submit">
     </fieldset>
 </form>
-{{!-- The Data from our Database --}}
-{{!-- Create a table --}}
+
 <table id="Doctors">
-
-    {{!-- Header section --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             {{#each data.[0]}}
             <th>
@@ -41,10 +35,7 @@
         </tr>
     </thead>
 
-    {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
             <td>{{this.doctorID}}</td>
