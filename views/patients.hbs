@@ -1,5 +1,6 @@
 {{> header }}
 <p>Existing and Past Patients of ER Hospital</p>
+<script src="/static/js/deletePatient.js"></script>
 
 <form id="add-patient-form" method="POST" action="/creates/add-patient-form">
     <fieldset>
@@ -50,7 +51,7 @@
             <td>{{this.birthdate}}</td>
             <td>{{this.isAdmitted}}</td>
             <td>{{this.doctorID}}</td>
-            <td><button>Delete</button></td>
+            <td><button onclick="deletePatient({{this.patientID}})">Delete</button></td>
             <td><a>Update</a></td>
         </tr>
         {{/each}}

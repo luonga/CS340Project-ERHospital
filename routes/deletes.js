@@ -61,7 +61,26 @@ deletesRouter
             })
         });
 
-//Delete 
+//Delete a patient
+deletesRouter
+    .route('/delete-patient/:patientID')
+    .delete((req,res)=>
+        {
+            console.log(req.params)
+            let query1 = 'DELETE FROM Patients WHERE patientID = ?';
+            let inserts = [req.params.patientID];
+
+            db.pool.query(query1, inserts, (error, rows, fields) => {
+                if(error) {
+                    res.sendStatus(400);
+                }
+                else {
+                    res.status(200).end();
+                }
+            })
+        });
+
+//Delete a medPatient
 
 //Exports the router
 module.exports = deletesRouter;
