@@ -239,33 +239,27 @@ app.post('/add-medpatient-form', (req, res)=>{
             res.redirect('/medpatients');
         }
     });
+});
 
-app.delete('/delete-department/:departmentID', (req, res, next)=>{
-    console.log('You made it to the delete router!');
-    console.log(req.params.departmentID);
-    query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
-    inserts = [req.params.id]
-    
 
-    db.pool.query(query1, inserts, (error, rows, fields) => {
+//delete a department
+app.delete('/delete-department/:departmentID', (req,res)=>{
+    console.log(req.params);
+    let query1 = 'DELETE FROM Departments WHERE departmentID = ?;'
+    let inserts = [req.params.departmentID]
 
-        if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
+    db.pool.query(query1, inserts, (error,rows,fields)=>{
+        if(error) {
             res.sendStatus(400);
         }
-
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
-        // presents it on the screen
-        else
-        {
-            res.status(202).end();
+        else {
+            res.status(200).end();
         }
     })
+    
 });
 
-});
+
 
 //Listening
 app.listen(PORT, () => {
