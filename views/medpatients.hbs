@@ -1,5 +1,6 @@
 {{> header }}
 <p>Patients and the medications they are taking.</p>
+<script src="/static/js/deleteMedPatient.js"></script>
 
 <form id="add-medpatient-form" method="POST" action="/creates/add-medpatient-form">
 
@@ -48,7 +49,7 @@
             <td>{{this.patientID}}</td>
             <td>{{this.medID}}</td>
             <td>{{this.medName}}</td>
-            <td><button>Delete</button></td>
+            <td><button onclick="deleteMedPatient({{this.medID}}, {{this.patientID}})">Delete</button></td>
             <td><a><u>Update</u></a></td>  
         </tr>
         {{/each}}
