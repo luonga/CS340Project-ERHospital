@@ -14,14 +14,11 @@ const path = require('path');
 //Router Variables
 const reads = require('./routes/reads');
 
-//Middleware for main routes
-app.use("/reads", reads);
-
 // app.js - SETUP section
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-
+//Set-up handlebars
 const {engine} = require('express-handlebars'); // Import express-handlebars
 
 app.set('view engine', '.hbs'); // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
@@ -30,6 +27,7 @@ app.engine('.hbs', engine({
     defaultLayout: 'main'
 }));  // Create an instance of the handlebars engine to process templates
 
+//Handle static content
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 //Home Page Route
@@ -37,78 +35,8 @@ app.get('/', function(req, res) {
     res.render('index', {title: 'ER Hospital Home Page'}); 
 });   
 
-app.get('/doctors', function(req, res)
-{
-    let query1 = "SELECT doctorID, firstName, lastName, departmentID FROM Doctors;";               // Define our query
-    let query2 = `SELECT departmentID, departmentName FROM Departments;`
-
-    db.pool.query(query1, function(error, rows, fields){    // Execute the query
-        
-        let doctors = rows;
-
-        db.pool.query(query2, function(error, rows, fields){
-            
-            let deparments = rows;
-            res.render('doctors', {title: 'Doctors', data: doctors, depts: deparments});
-        })
-
-    });                      
-});
-
-app.get('/departments', function(req, res)
-{
-    
-    let query1 = "SELECT departmentID, departmentName, capacity FROM Departments;";               // Define our query
-
-    db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-        res.render('departments', {title: 'Departments', data: rows});                  // Render the index.hbs file, and also send the renderer
-    });                      
-});
-
-app.get('/patients', function(req, res)
-{
-    let query1 = `SELECT patientID, firstName, lastName, 
-    birthdate, isAdmitted, doctorID FROM Patients;`;          
-    let query2 = `SELECT doctorID, firstName, lastName FROM Doctors;`
-
-    db.pool.query(query1, function(error, rows, fields){    // Execute the query
-        let patients = rows;
-
-        db.pool.query(query2, function(error, rows, fields){
-            let doctors = rows;
-            res.render('patients', {title: 'Patients', data: patients, docs: doctors}); 
-        });
-
-    });                      
-});
-
-app.get('/medpatients', function(req, res)
-{
-    let query1 = `SELECT firstName, lastName, MedPatients.patientID,
-    MedPatients.medID, medName FROM MedPatients
-    INNER JOIN Patients ON MedPatients.patientID = Patients.patientID
-    INNER JOIN Medications ON MedPatients.medID = Medications.medID;`;
-    let query2 = `SELECT firstName, lastName, patientID FROM Patients;`;
-    let query3 = `SELECT medName, medID FROM Medications;`;
-
-    db.pool.query(query1, function(error, rows, fields){    // Execute the query
-        let medpats = rows;
-
-        db.pool.query(query2, function(error, rows, fields){
-            let patients = rows;
-            db.pool.query(query3, function(error, rows, fields){
-                let medications = rows;
-                res.render('medpatients', {
-                    title: 'Med-Patients',
-                    data: medpats,
-                    pats: patients,
-                    meds: medications
-                });
-            });
-        });
-    });                      
-});
+//Middleware for main routes
+app.use("/reads", reads);
 
 app.post('/add-department-form', (req, res)=>{
     let query1 = `INSERT INTO Departments (departmentName, capacity)
@@ -129,7 +57,7 @@ app.post('/add-department-form', (req, res)=>{
         // presents it on the screen
         else
         {
-            res.redirect('/departments');
+            res.redirect('/reads/departments');
         }
     })
 });
@@ -152,7 +80,7 @@ app.post('/add-doctor-form', (req, res)=>{
         // presents it on the screen
         else
         {
-            res.redirect('/doctors');
+            res.redirect('/reads/doctors');
         }
     });
 });
@@ -202,7 +130,7 @@ app.post('/add-patient-form', (req,res)=>{
         // presents it on the screen
         else
         {
-            res.redirect('/patients');
+            res.redirect('/reads/patients');
         }
     });
 });
@@ -227,7 +155,7 @@ app.post('/add-medpatient-form', (req, res)=>{
         // presents it on the screen
         else
         {
-            res.redirect('/medpatients');
+            res.redirect('/reads/medpatients');
         }
     });
 });
