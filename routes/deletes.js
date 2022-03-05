@@ -42,6 +42,25 @@ deletesRouter
            })
         });
 
+//Delete a medication
+deletesRouter
+    .route('/delete-medication/:medID')
+    .delete((req,res)=>
+        {
+            console.log(req.params.medID)
+            let query1 = 'DELETE FROM Medications WHERE medID = ?;';
+            let inserts = [req.params.medID];
+
+            db.pool.query(query1, inserts, (error, rows, fields) => {
+                if(error) {
+                    res.sendStatus(400);
+                }
+                else {
+                    res.status(200).end();
+                }
+            })
+        });
+
 //Delete 
 
 //Exports the router

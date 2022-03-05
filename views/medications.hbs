@@ -1,5 +1,7 @@
 {{> header }}
 <p>Available Medications at ER Hospital</p>
+<script src="/static/js/deleteMedication.js"></script>
+
     <form id="add-medication-form" method="POST" action="/creates/add-medication-form">
 
         <fieldset>
@@ -30,7 +32,7 @@
         <tr>
             <td>{{this.medID}}</td>
             <td>{{this.medName}}</td>
-            <td><button>Delete</button></td>
+            <td><button onclick="deleteMedication({{this.medID}})">Delete</button></td>
             <td><a>Update</a></td>
         </tr>
         {{/each}}
