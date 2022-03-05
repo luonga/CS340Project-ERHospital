@@ -11,6 +11,11 @@ const app = express();
 const db = require('./database/db-connector');
 const path = require('path');
 
+//Router Variables
+const reads = require('./routes/reads');
+
+//Middleware for main routes
+app.use("/reads", reads);
 
 // app.js - SETUP section
 app.use(express.json());
@@ -27,24 +32,10 @@ app.engine('.hbs', engine({
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+//Home Page Route
 app.get('/', function(req, res) {
-    let query1 = "SELECT * FROM Medications;";               // Define our query
-
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-            res.render('index', {title: 'Handle', data: rows});                  // Render the index.hbs file, and also send the renderer
-        });  
-});
-
-app.get('/medications', function(req, res)
-    {
-        let query1 = "SELECT * FROM Medications;";               // Define our query
-
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-            res.render('medications', {title: 'Medications', data: rows});                  // Render the index.hbs file, and also send the renderer
-        });                      
-    });   
+    res.render('index', {title: 'ER Hospital Home Page'}); 
+});   
 
 app.get('/doctors', function(req, res)
 {
@@ -183,7 +174,7 @@ app.post('/add-medication-form', (req, res)=>{
         // presents it on the screen
         else
         {
-            res.redirect('/medications');
+            res.redirect('/reads/medications');
         }
     });
 
