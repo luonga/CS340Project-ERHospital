@@ -17,7 +17,7 @@ const path = require('path');
 const reads = require('./routes/reads');
 const creates = require('./routes/creates');
 const deletes = require('./routes/deletes');
-
+const updates = require('./routes/updates')
 
 
 // app.js - SETUP section
@@ -58,7 +58,7 @@ app.get('/', function(req, res) {
 app.use("/reads", reads);
 app.use("/creates", creates);
 app.use("/deletes", deletes);
-
+app.use("/updates", updates);
 
 
 

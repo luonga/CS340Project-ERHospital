@@ -3,6 +3,8 @@ const express = require('express');
 const db = require('../database/db-connector');
 let readsRouter = express.Router();
 
+//Return Everything reads
+
 //Read and return all the medications in database
 readsRouter
     .route('/medications')
@@ -99,6 +101,34 @@ readsRouter
                 });
             });                      
         });
+
+//Single Reads
+
+//Read and return a single department.
+readsRouter
+    .route('/singleDepartment/:departmentID')
+    .get((req,res)=>
+        {
+            let query1 = `SELECT departmentID, departmentName, capacity 
+            FROM Departments WHERE departmentID = ?`;
+            let inserts = [
+                req.params.departmentID
+            ];
+
+            db.pool.query(query1, inserts, (error, rows, fields)=>{
+
+                if(error){
+                    res.sendStatus(400)
+                }
+                else {
+                    let department = rows
+                    res.render('updateDepartment', {title: 'Update Dept', data: department})
+                }
+            })
+        });
+
+
+//Read and return a single doctor
 
 
 //Exports the router

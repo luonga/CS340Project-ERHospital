@@ -1,0 +1,17 @@
+{{>header}}
+<p>Update Department</p>
+
+
+
+<form id="departmentForm">
+    <fieldset>
+        <legend>Update a Department</legend>
+        <label for="departmentName">Department Name</label> </label>
+        <input type="text" name="departmentName" id="departmentName" value="{{data.[0].departmentName}}">
+        <label for="capacity">Capacity </label>
+        <input type="number" name="capacity" id="capacity" value={{data.[0].capacity}}>
+    </fieldset>
+</form>
+<button onclick="updateDepartment({{data.[0].departmentID}})">Update</button>
+
+<script src="/static/js/updateDepartment.js"></script>

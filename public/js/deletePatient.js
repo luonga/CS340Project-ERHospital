@@ -1,6 +1,7 @@
 function deletePatient(patientID) {
     $(function (){
-        })
+      
+    })
         let link = '/deletes/delete-patient/';
         link += patientID;
         $.ajax({
