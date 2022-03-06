@@ -83,7 +83,16 @@ createsRouter
     .route('/add-patient-form')
     .post((req,res)=>
         {
-        
+            let isAdmitted = req.body.isAdmitted;
+            console.log(isAdmitted)
+            if (isAdmitted === 'on') {
+                isAdmitted = 1
+            } else {
+                isAdmitted = 0
+            }
+            
+            
+
             let query1 = `INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID) 
             VALUES (?, ?, ?, ?, ?);`
 
@@ -91,9 +100,11 @@ createsRouter
                 req.body.firstName, 
                 req.body.lastName, 
                 req.body.birthdate, 
-                req.body.isAdmitted, 
+                isAdmitted, 
                 req.body.doctorID
             ];
+
+            console.log(isAdmitted)
             
             db.pool.query(query1, inserts, function(error, rows, fields){
                     if (error) {

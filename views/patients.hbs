@@ -52,7 +52,11 @@
             <td>{{this.isAdmitted}}</td>
             <td>{{this.doctorID}}</td>
             <td><button onclick="deletePatient({{this.patientID}})">Delete</button></td>
-            <td><a>Update</a></td>
+            <td>
+                <a href="/reads/singlePatient/{{this.patientID}}">
+                    Update
+                </a>
+            </td>
         </tr>
         {{/each}}
     </tbody>

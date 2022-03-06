@@ -172,6 +172,32 @@ readsRouter
         });
 
 //Read and return a single patient
+readsRouter
+    .route('/singlePatient/:patientID')
+    .get((req,res)=>
+        {
+            let query1 = `SELECT patientID, firstName, lastName, 
+            birthdate, isAdmitted, doctorID FROM Patients
+            WHERE patientID = ?;`;
+            let query2 = `SELECT doctorID, firstName, lastName FROM Doctors;`;
+            let inserts = [
+                req.params.patientID
+            ];
+
+            db.pool.query(query1, inserts, (error, rows, fields)=>{
+                let patient = rows;
+                db.pool.query(query2, (error, rows, fields)=>{
+                    let doctors = rows;
+
+                    if(error) {
+                        res.sendStatus(400)
+                    }
+                    else {
+                        res.render('updatePatient', {title: 'Update Patient', data: patient, docs: doctors})
+                    }
+                });
+            });
+        });
 //Read and return a single medpatient
 //Exports the router
 module.exports = readsRouter;

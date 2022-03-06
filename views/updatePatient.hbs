@@ -1,0 +1,38 @@
+{{>header}}
+<p>Update Patient</p>
+
+<form id="patientForm">
+    <fieldset>
+        <legend>Update a Patient</legend>
+        <label for="firstName">First Name </label>
+        <input type="text" name="firstName" id="firstName" value={{data.[0].firstName}}>
+        <label for="lastName">Last Name </label>
+        <input type="text" name="lastName" id="lastName" value={{data.[0].lastName}}>
+        <label for="birthdate">Birthdate </label>
+        <input type="date" name="birthdate" id="birthdate" value={{data.[0].birthdate}}>
+        <label for="isAdmitted">Is Admitted </label>
+        <input type="checkbox" name="isAdmitted" id="isAdmitted" value={{data.[0].isAdmitted}}>
+
+        <label for="departmentID">Department</label>
+        <select name="doctorID" id="doctor-selector">
+            
+            {{#each docs}}
+            <option value="{{this.doctorID}}">{{this.firstName}} {{this.lastName}}</option>
+            {{/each}}
+        </select>
+
+    </fieldset>
+</form>
+<button onclick="updatePatient({{data.[0].patientID}})">
+    Update
+</button>
+
+{{!-- Sends a put request using ajax --}}
+<script src="/static/js/updatePatient.js"></script>
+
+{{!-- Selects the incoming doctor --}}
+<script>
+    $(function(){
+        $('#doctor-selector').val({{data.[0].doctorID}})
+    })
+</script>
