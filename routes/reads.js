@@ -1,5 +1,6 @@
 'use strict'; 
 const express = require('express');
+const res = require('express/lib/response');
 const db = require('../database/db-connector');
 let readsRouter = express.Router();
 
@@ -24,7 +25,7 @@ readsRouter
     .get((req, res)=>
         {
             let query1 = "SELECT doctorID, firstName, lastName, departmentID FROM Doctors;";               
-            let query2 = `SELECT departmentID, departmentName FROM Departments;`
+            let query2 = `SELECT departmentID, departmentName FROM Departments;`;
 
             db.pool.query(query1, function(error, rows, fields){    
                 
@@ -129,7 +130,26 @@ readsRouter
 
 
 //Read and return a single doctor
+readsRouter
+    .route('/singleDoctor/:doctorID')
+    .get((req,res)=>
+        {
+            let query1 = `SELECT doctorID, firstName, lastName, departmentID FROM Doctors
+            WHERE doctorID = ?;`;
+            let query2 = `SELECT departmentID, departmentName FROM Departments;`;
+            let inserts = [req.params.doctorID]
 
+            db.pool.query(query1, inserts, (error, rows, fields)=>{
+                let doctor = rows;
+                db.pool.query(query2, (error, rows, fields)=>{
+                    let departments = rows;
+                    res.render('updateDoctor', {title: 'Update Doc', data: doctor, depts: departments})
+                });
+            });
+        });
 
+//Read and return a single medication
+//Read and return a single patient
+//Read and return a single medpatient
 //Exports the router
 module.exports = readsRouter;

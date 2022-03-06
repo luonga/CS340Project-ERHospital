@@ -1,0 +1,35 @@
+{{>header}}
+<p>Update Doctor</p>
+
+<form id="doctorForm">
+    <fieldset>
+        <legend>Update a Department</legend>
+        <label for="firstName">First Name </label>
+        <input type="text" name="firstName" id="firstName" value={{data.[0].firstName}}>
+        <label for="lastName">Last Name </label>
+        <input type="text" name="lastName" id="lastName" value={{data.[0].lastName}}>
+
+        <label for="departmentID">Department</label>
+        <select name="departmentID" id="department-selector">
+            
+            {{#each depts}}
+            <option value="{{this.departmentID}}">{{this.departmentName}}</option>
+            {{/each}}
+        </select>
+
+    </fieldset>
+</form>
+<button onclick="updateDoctor({{data.[0].doctorID}})">
+    Update
+</button>
+
+{{!-- Sends a put request using ajax --}}
+<script src="/static/js/updateDoctor.js"></script>
+
+{{!-- Selects the incoming department --}}
+<script>
+    $(function(){
+        console.log('hello select')
+        $('#department-selector').val({{data.[0].departmentID}})
+    })
+</script>
