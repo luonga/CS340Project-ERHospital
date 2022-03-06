@@ -1,0 +1,18 @@
+{{>header}}
+<p>Update Medication</p>
+
+<form id="medicationForm">
+    <fieldset>
+        <legend>Update a Medication</legend>
+        <label for="medName">Medication Name</label> 
+        <input type="text" name="medName" id="medName" value="{{data.[0].medName}}">
+    </fieldset>
+    
+</form>
+<button onclick="updateMedication({{data.[0].medID}})">
+    Update
+</button>
+
+{{!-- Sends a put request using ajax --}}
+<script src="/static/js/updateMedication.js"></script>
+

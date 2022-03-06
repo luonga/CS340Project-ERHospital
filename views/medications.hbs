@@ -33,7 +33,11 @@
             <td>{{this.medID}}</td>
             <td>{{this.medName}}</td>
             <td><button onclick="deleteMedication({{this.medID}})">Delete</button></td>
-            <td><a>Update</a></td>
+            <td>
+                <a href="/reads/singleMedication/{{this.medID}}">
+                    Update
+                </a>
+            </td>
         </tr>
         {{/each}}
     </tbody>

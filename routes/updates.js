@@ -53,6 +53,29 @@ updatesRouter
         });
 
 //Update Medication
+updatesRouter
+    .route('/update-medication/:medID')
+    .put((req,res)=>
+        {
+            let query1 = `UPDATE Medications SET medName = ? 
+            WHERE medID = ?;`;
+            let inserts = [
+                req.body.medName,
+                req.params.medID
+            ];
+
+            db.pool.query(query1, inserts, (error, rows, fields)=>{
+                if (error) {
+                    res.sendStatus(400)
+                }
+                else {
+                    res.status(200).end()
+                }
+            });
+
+        });
+
+      
 //Update Patient
 //Update MedPatient
 

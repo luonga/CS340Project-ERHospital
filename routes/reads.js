@@ -149,6 +149,28 @@ readsRouter
         });
 
 //Read and return a single medication
+readsRouter
+    .route('/singleMedication/:medID')
+    .get((req,res)=>
+        {
+            let query1 = `SELECT medID, medName FROM Medications
+            WHERE medID = ?;`;
+            let inserts = [
+                req.params.medID
+            ];
+
+            db.pool.query(query1, inserts, (error, rows, fields)=>{
+                let medication = rows;
+
+                if(error){
+                    res.sendStatus(400);
+                }
+                else {
+                    res.render('updateMedication', {title: 'Update Med', data: medication});
+                }
+            });
+        });
+
 //Read and return a single patient
 //Read and return a single medpatient
 //Exports the router
