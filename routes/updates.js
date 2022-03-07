@@ -77,6 +77,30 @@ updatesRouter
 
       
 //Update Patient
+updatesRouter
+    .route('/update-patient/:patientID')
+    .put((req,res)=>
+        {   
+            if(req.body.isAdmitted == 'on'){
+                
+            }
+            let query1 = `UPDATE Patients SET firstName = ?, 
+            lastName = ?, birthdate = ?, 
+            isAdmitted = ?, doctorID = ? 
+            WHERE patientID = ?`
+            let inserts = [
+                req.body.firstName,
+                req.body.lastName,
+                req.body.birthdate,
+                ,
+                req.body.doctorID,
+                req.params.patientID
+            ]
+            console.log(inserts);
+            res.status(200);
+        });
+
+
 //Update MedPatient
 
 //Exports the router

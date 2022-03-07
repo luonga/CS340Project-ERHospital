@@ -14,7 +14,8 @@
         <label for="birthdate">Birthdate </label>
         <input type="date" name="birthdate" id="birthdate" value="{{data.[0].birthdate}}">
         <label for="isAdmitted">Is Admitted </label>
-
+        
+        {{!-- This logic displays the appropriate isAdmitted value --}}
         {{#if isAdm}}
         <input type="checkbox" name="isAdmitted" id="isAdmitted" checked="on">
         {{else}}
