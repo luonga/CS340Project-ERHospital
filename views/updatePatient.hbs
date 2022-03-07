@@ -1,6 +1,9 @@
 {{>header}}
 <p>Update Patient</p>
 
+
+
+
 <form id="patientForm">
     <fieldset>
         <legend>Update a Patient</legend>
@@ -11,7 +14,12 @@
         <label for="birthdate">Birthdate </label>
         <input type="date" name="birthdate" id="birthdate" value="{{data.[0].birthdate}}">
         <label for="isAdmitted">Is Admitted </label>
-        <input type="checkbox" name="isAdmitted" id="isAdmitted" value="{{data.[0].isAdmitted}}">
+
+        {{#if isAdm}}
+        <input type="checkbox" name="isAdmitted" id="isAdmitted" checked="on">
+        {{else}}
+        <input type="checkbox" name="isAdmitted" id="isAdmitted">
+        {{/if}}
 
         <label for="departmentID">Department</label>
         <select name="doctorID" id="doctor-selector">

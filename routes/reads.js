@@ -199,6 +199,9 @@ readsRouter
                 {
                     sql: query1, 
                     values: inserts,
+
+                    //Cast the DATE field as a string to put it into the 
+                    //appropriate format for the updatePatient form. 
                     typeCast: function(field, next) {
                         if(field.type === 'DATE') {
                             return field.string() 
@@ -208,7 +211,19 @@ readsRouter
                         }
                     }
                 }, (error, rows, fields)=>{
-                let patient = rows;
+
+                    //Handle the isAdmitted to display the appropriate tags on the 
+                    //updatePatient .hbs
+                    let patient = rows;
+                    let isAdmitted = patient[0].isAdmitted;
+                    
+                    if (isAdmitted === 1) {
+                        isAdmitted = true
+                    } else {
+                        isAdmitted = false
+                    }
+
+
                 db.pool.query(query2, (error, rows, fields)=>{
                     let doctors = rows;
 
@@ -217,7 +232,13 @@ readsRouter
                     }
                     else {
                         console.log(patient)
-                        res.render('updatePatient', {title: 'Update Patient', data: patient, docs: doctors})
+                        res.render('updatePatient', 
+                            {
+                                title: 'Update Patient', 
+                                data: patient, 
+                                docs: doctors, 
+                                isAdm: isAdmitted
+                            });
                     }
                 });
             });
