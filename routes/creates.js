@@ -33,9 +33,23 @@ createsRouter
     .route('/add-doctor-form')
     .post((req, res) =>
         {
-            let query1 = `INSERT INTO Doctors (firstName, lastName, departmentID)
-            VALUES (?, ?, ?);`;
-            let inserts = [req.body.firstName, req.body.lastName, req.body.departmentID];
+            
+            //Handle a null value for departmentID
+            let query1;
+            let inserts;
+            if(Number.isInteger(req.body.departmentID)){
+                query1 = `INSERT INTO Doctors (firstName, lastName, departmentID)
+                VALUES (?, ?, ?);`;
+                inserts = [req.body.firstName, req.body.lastName, req.body.departmentID];
+            }
+            else {
+                query1 = `INSERT INTO Doctors (firstName, lastName)
+                VALUES (?, ?);`;
+                inserts = [req.body.firstName, req.body.lastName];
+            }
+
+            
+            
         
             db.pool.query(query1, inserts, function(error, rows, fields){
                 // Check to see if there was an error
