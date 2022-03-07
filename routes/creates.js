@@ -84,27 +84,41 @@ createsRouter
     .post((req,res)=>
         {
             let isAdmitted = req.body.isAdmitted;
-            console.log(isAdmitted)
+            let query1;
+            let inserts;
+
+            //Handle isAdmitted before sending to database
             if (isAdmitted === 'on') {
                 isAdmitted = 1
             } else {
                 isAdmitted = 0
             }
             
+            //Handle doctorID if it is not an integer.  
+            if (Number.isInteger(req.body.doctorID))
+            {
+                query1 = `INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID) 
+                VALUES (?, ?, ?, ?, ?);`;
+                inserts = [
+                    req.body.firstName, 
+                    req.body.lastName, 
+                    req.body.birthdate, 
+                    isAdmitted, 
+                    req.body.doctorID
+                ];
+            } 
+            else {
+                query1 = `INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted) 
+                VALUES (?, ?, ?, ?);`;
+                inserts = [
+                    req.body.firstName, 
+                    req.body.lastName, 
+                    req.body.birthdate, 
+                    isAdmitted
+                ];
+            }
             
-
-            let query1 = `INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID) 
-            VALUES (?, ?, ?, ?, ?);`
-
-            let inserts = [
-                req.body.firstName, 
-                req.body.lastName, 
-                req.body.birthdate, 
-                isAdmitted, 
-                req.body.doctorID
-            ];
-
-            console.log(isAdmitted)
+            console.log(inserts)
             
             db.pool.query(query1, inserts, function(error, rows, fields){
                     if (error) {

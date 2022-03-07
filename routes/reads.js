@@ -193,6 +193,7 @@ readsRouter
                         res.sendStatus(400)
                     }
                     else {
+                        console.log(patient)
                         res.render('updatePatient', {title: 'Update Patient', data: patient, docs: doctors})
                     }
                 });
