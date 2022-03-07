@@ -27,8 +27,16 @@
 </form>
 
 <h2>Patients</h2>
-    <input type="text" id="patientInput" onkeyup="searchFunction()" placeholder="Search by name or DOB" title="Type in a name">   
 
+    <form id="search-person-html" method='GET' action='/reads/search' style="display: inline;">
+        <label for="input-lname">Search by Last Name: </label>
+        <input type="text" name="lname" id="input-lname-html-search">
+        <input type="submit">
+    </form>
+    <form action='/reads/patients' style="display: inline;">
+        <input type="submit" value="Reset" />
+    </form>
+    
 <table id="Patients">
     <thead>
         <tr>

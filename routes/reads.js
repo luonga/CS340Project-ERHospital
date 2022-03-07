@@ -199,5 +199,29 @@ readsRouter
             });
         });
 //Read and return a single medpatient
+
+
+//Searches the Patients by last name
+readsRouter 
+    .route('/search')
+    .get((req,res)=>
+        {
+            let query1 = `SELECT patientID, firstName, lastName, 
+            birthdate, isAdmitted, doctorID FROM Patients WHERE lastName = "${req.query.lname}";`;          
+            let query2 = `SELECT doctorID, firstName, lastName FROM Doctors;`
+
+            db.pool.query(query1, function(error, rows, fields){   
+                let patients = rows;
+
+                db.pool.query(query2, function(error, rows, fields){
+                    let doctors = rows;
+                    res.render('patients', {title: 'Patients', data: patients, docs: doctors}); 
+                });
+
+            });                      
+        });
+
+
+
 //Exports the router
 module.exports = readsRouter;
