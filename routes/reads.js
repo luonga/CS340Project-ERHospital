@@ -217,7 +217,7 @@ readsRouter
                     let patient = rows;
                     let isAdmitted = patient[0].isAdmitted;
                     
-                    if (isAdmitted === 1) {
+                    if (isAdmitted === 'True') {
                         isAdmitted = true
                     } else {
                         isAdmitted = false

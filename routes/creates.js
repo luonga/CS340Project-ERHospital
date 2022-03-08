@@ -103,9 +103,9 @@ createsRouter
 
             //Handle isAdmitted before sending to database
             if (isAdmitted === 'on') {
-                isAdmitted = 1
+                isAdmitted = 'True'
             } else {
-                isAdmitted = 0
+                isAdmitted = 'False'
             }
             
             //Handle doctorID if it is not an integer.  
