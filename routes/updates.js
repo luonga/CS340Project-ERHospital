@@ -136,6 +136,30 @@ updatesRouter
 
 
 //Update MedPatient
+updatesRouter
+    .route('/update-medPatient/:medID/:patientID')
+    .put((req,res)=>
+        {
+            let query1 = `UPDATE MedPatients 
+            SET patientID = ?, medID = ?
+            WHERE (medID, patientID) = (?,?);`;
+            let inserts = [
+                req.body.patientID,
+                req.body.medID,
+                req.params.medID,
+                req.params.patientID
+            ];
+            console.log(inserts)
+            db.pool.query(query1, inserts, (error, rows, fields)=>{
+                if(error){
+                    res.sendStatus(400)
+                }
+                else{
+                    res.status(200).end()
+                }
+            })
+        });
+
 
 //Exports the router
 module.exports = updatesRouter;
