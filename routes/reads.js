@@ -244,7 +244,39 @@ readsRouter
             });
         });
 //Read and return a single medpatient
-
+readsRouter
+    .route('/singleMedPatient/:medID/:patientID')
+    .get((req,res)=>
+        {
+            let query1 = `SELECT firstName, lastName, MedPatients.patientID,
+            MedPatients.medID, medName FROM MedPatients
+            INNER JOIN Patients ON MedPatients.patientID = Patients.patientID
+            INNER JOIN Medications ON MedPatients.medID = Medications.medID
+            WHERE MedPatients.patientID = ? AND MedPatients.medID = ?;`;
+            let query2 = `SELECT firstName, lastName, patientID FROM Patients;`;
+            let query3 = `SELECT medName, medID FROM Medications;`;
+            let inserts = [
+                req.params.patientID,
+                req.params.medID
+            ];
+            console.log(inserts)
+            db.pool.query(query1, inserts, function(error, rows, fields){    
+                let medpat = rows;
+                console.log(medpat)
+                db.pool.query(query2, function(error, rows, fields){
+                    let patients = rows;
+                    db.pool.query(query3, function(error, rows, fields){
+                        let medications = rows;
+                        res.render('updateMedPatient', {
+                            title: 'Update Prescription',
+                            data: medpat,
+                            pats: patients,
+                            meds: medications
+                        });
+                    });
+                });
+            }); 
+        });
 
 //Searches the Patients by last name
 readsRouter 

@@ -1,0 +1,34 @@
+{{>header}}
+<p>Update Prescription</p>
+
+<form id="medPatientForm">
+    <fieldset>
+        <label for="medID">Medication</label>
+        <select name="medID" id="medID-selector">
+            {{#each meds}}
+            <option value="{{this.medID}}">{{this.medName}}</option>
+            {{/each}}
+        </select>
+
+        <label for="patientID">Patient</label>
+        <select name="patientID" id="patientID-selector">
+            {{#each pats}}
+            <option value="{{this.patientID}}">{{this.firstName}} {{this.lastName}}</option>
+            {{/each}}
+        </select>
+    </fieldset>
+</form>
+<button onclick="updateMedPatient({{data.[0].medID}},{{data.[0].patientID}})">
+    Update
+</button>
+
+{{!-- Sends a put request using ajax --}}
+<script src="/static/js/updateMedPatient.js"></script>
+
+{{!-- Selects the incoming doctor --}}
+<script>
+    $(function(){
+        $('#medID-selector').val({{data.[0].medID}})
+        $('#patientID-selector').val({{data.[0].patientID}})
+    })
+</script>
