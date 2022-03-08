@@ -93,8 +93,9 @@ updatesRouter
                 isAdmitted = 'False'
             }
 
+            let doctorID = parseInt(req.body.doctorID)
             //Handle if doctorID is NULL
-            if(Number.isInteger(req.body.doctorID)){
+            if(Number.isInteger(doctorID)){
                 query1 = `UPDATE Patients SET firstName = ?, 
                 lastName = ?, birthdate = ?, 
                 isAdmitted = ?, doctorID = ? 
