@@ -37,7 +37,7 @@ createsRouter
             //Handle a null value for departmentID
             let query1;
             let inserts;
-            if(Number.isInteger(req.body.departmentID)){
+            if(req.body.departmentID != ''){
                 query1 = `INSERT INTO Doctors (firstName, lastName, departmentID)
                 VALUES (?, ?, ?);`;
                 inserts = [req.body.firstName, req.body.lastName, req.body.departmentID];
