@@ -108,10 +108,9 @@ createsRouter
                 isAdmitted = 'False'
             }
             
-            console.log(req.body.doctorID)
             let doctorID = parseInt(req.body.doctorID)
             //Handle doctorID if it is not an integer.  
-            if (Number.isInteger(doctorID))
+            if (req.body.doctorID != '')
             {
                 query1 = `INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID) 
                 VALUES (?, ?, ?, ?, ?);`;
