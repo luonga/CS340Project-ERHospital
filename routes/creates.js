@@ -103,13 +103,15 @@ createsRouter
 
             //Handle isAdmitted before sending to database
             if (isAdmitted === 'on') {
-                isAdmitted = 1
+                isAdmitted = 'True'
             } else {
-                isAdmitted = 0
+                isAdmitted = 'False'
             }
             
+            console.log(req.body.doctorID)
+            let doctorID = parseInt(req.body.doctorID)
             //Handle doctorID if it is not an integer.  
-            if (Number.isInteger(req.body.doctorID))
+            if (Number.isInteger(doctorID))
             {
                 query1 = `INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID) 
                 VALUES (?, ?, ?, ?, ?);`;
@@ -132,7 +134,7 @@ createsRouter
                 ];
             }
             
-            console.log(inserts)
+            
             
             db.pool.query(query1, inserts, function(error, rows, fields){
                     if (error) {

@@ -13,7 +13,8 @@ CREATE TABLE Patients (
     firstName varchar(255) NOT NULL,
     lastName varchar(255) NOT NULL,
     birthdate DATE NOT NULL,
-    isAdmitted TINYINT(1) NOT NULL DEFAULT 0,
+    isAdmitted ENUM('True', 'False') NOT NULL,
+    -- isAdmitted TINYINT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (patientID)
 ) ENGINE=InnoDB;
 
@@ -79,9 +80,9 @@ VALUES ('Gregory', 'House', 3),
 ('Lisa', 'Cuddy', 2);
 
 INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID)
-VALUES ('Danny', 'Jennings', '1979-01-18', 1, 3),
-('Evan', 'Greer', '1985-06-12', 1, 3),
-('Alice', 'Tanner', '1992-11-12', 0, 1);
+VALUES ('Danny', 'Jennings', '1979-01-18', 'True', 3),
+('Evan', 'Greer', '1985-06-12', 'True', 3),
+('Alice', 'Tanner', '1992-11-12', 'False', 1);
 
 INSERT INTO Medications (medName)
 VALUES ('Levothyroxine'),

@@ -14,7 +14,8 @@
         <label for="birthdate">Birthdate </label>
         <input type="date" name="birthdate" id="birthdate" value="{{data.[0].birthdate}}">
         <label for="isAdmitted">Is Admitted </label>
-
+        
+        {{!-- This logic displays the appropriate isAdmitted value --}}
         {{#if isAdm}}
         <input type="checkbox" name="isAdmitted" id="isAdmitted" checked="on">
         {{else}}
@@ -23,7 +24,7 @@
 
         <label for="departmentID">Department</label>
         <select name="doctorID" id="doctor-selector">
-            
+            <option value=''></option>
             {{#each docs}}
             <option value="{{this.doctorID}}">{{this.firstName}} {{this.lastName}}</option>
             {{/each}}
@@ -41,6 +42,14 @@
 {{!-- Selects the incoming doctor --}}
 <script>
     $(function(){
-        $('#doctor-selector').val({{data.[0].doctorID}})
+        let docID = parseInt({{data.[0].doctorID}});
+
+        if(Number.isInteger(docID)) {
+            $('#doctor-selector').val({{data.[0].doctorID}})
+        } else {
+            $('#doctor-selector').val('')
+        }
+        
+        
     })
 </script>
