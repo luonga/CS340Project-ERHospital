@@ -11,7 +11,6 @@ createsRouter
             let query1 = `INSERT INTO Departments (departmentName, capacity)
             VALUES (?, ?);`
             let inserts = [req.body.departmentName, req.body.capacity]
-            console.log(inserts)
             db.pool.query(query1, inserts, function(error, rows, fields){
         
                 // Check to see if there was an error

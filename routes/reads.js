@@ -33,8 +33,19 @@ readsRouter
 
                 db.pool.query(query2, function(error, rows, fields){
                     
-                    let deparments = rows;
-                    res.render('doctors', {title: 'Doctors', data: doctors, depts: deparments});
+                    let departments = rows;
+                    //Display departmentName instead of departmentID on the Doctors page
+                    let departmentmap = {}
+                    departments.map(department => {
+                        let id = parseInt(department.departmentID, 10);
+                        departmentmap[id] = department["departmentName"];
+                    })
+
+                    doctors = doctors.map(doctor => {
+                        return Object.assign(doctor, {departmentID: departmentmap[doctor.departmentID]})
+                    })
+
+                    res.render('doctors', {title: 'Doctors', data: doctors, depts: departments});
                 })
 
             });                      
@@ -78,6 +89,17 @@ readsRouter
 
                 db.pool.query(query2, function(error, rows, fields){
                     let doctors = rows;
+                    //Display departmentName instead of departmentID on the Doctors page
+                    let doctormap = {}
+                    doctors.map(doctor => {
+                        let id = parseInt(doctor.doctorID, 10);
+                        doctormap[id] = doctor["firstName"] + " " + doctor["lastName"];
+                    })
+
+                    patients = patients.map(patient => {
+                        return Object.assign(patient, {doctorID: doctormap[patient.doctorID]})
+                    })
+
                     res.render('patients', {title: 'Patients', data: patients, docs: doctors}); 
                 });
 

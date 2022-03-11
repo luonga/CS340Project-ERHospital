@@ -40,11 +40,12 @@
 <table id="Patients">
     <thead>
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>Patient ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birthdate</th>
+            <th>Currently Admitted</th>
+            <th>Doctor Name</th>
             {{>edit_delete_col_header}}
         </tr>
     </thead>
