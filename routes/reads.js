@@ -287,7 +287,18 @@ readsRouter
             birthdate, isAdmitted, doctorID FROM Patients WHERE lastName = "${req.query.lname}";`;          
             let query2 = `SELECT doctorID, firstName, lastName FROM Doctors;`
             
-            db.pool.query(query1, function(error, rows, fields){   
+            db.pool.query(
+                {
+                    sql: query1, 
+                    typeCast: function(field, next) {
+                        if(field.type === 'DATE') {
+                            return field.string() 
+                        } else {
+                            return next()
+                            
+                        }
+                    }
+                }, function(error, rows, fields){   
                 let patients = rows;
 
                 db.pool.query(query2, function(error, rows, fields){
