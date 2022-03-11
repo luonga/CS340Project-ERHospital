@@ -61,3 +61,18 @@ tr:nth-child(even) {
     background-color: #04AA6D;
     color: white;
   }
+
+  a.link{ 
+    color:#0000CD;
+    font-size: 17px;
+    
+  }
+
+  a.link:hover{
+    background-color: #708090;
+  }
+
+  .all{
+    max-width: 500px;
+    margin: auto;
+  }

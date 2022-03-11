@@ -1,16 +1,26 @@
 {{> header }}
 
 <!-- index.hbs -->
-<h1>Welcome to the ER Database</h1>
-<h2>Select an option below</h2>
-<a href="/">Home</a>
+<div class="all">
+<h1>Welcome to the ER Database!</h1>
+<body>
+    Our database keeps track of the patients that doctors are assigned to and what medications the patients are potentially using and also which doctors are assigned to which department.  This database is useful for doctors to see which patients they currently are assigned to and what medications their patient is currently taking.  It is also useful for a hospital administrator to see how the doctors are allocated to departments and how many patients each doctor is assigned to.  This feature can be useful for finding solutions to staffing issues.  
+</body>
+<h3>Select an option below:</h3>
+<a class="link" href="/">Home</a>
 <br>
-<a href="/reads/departments">Add/Edit Departments</a>
 <br>
-<a href="/reads/doctors">Add/Edit Doctors</a>
+<a class="link" href="/reads/departments">Add/Edit Departments</a>
 <br>
-<a href="/reads/medications">Add/Edit Medications</a>
 <br>
-<a href="/reads/patients">Add/Edit/Search Patients</a>
+<a class="link" href="/reads/doctors">Add/Edit Doctors</a>
 <br>
-<a href="/reads/medpatients">Connect a Medication to a Patient</a>
+<br>
+<a class="link" href="/reads/medications">Add/Edit Medications</a>
+<br>
+<br>
+<a class="link" href="/reads/patients">Add/Edit/Search Patients</a>
+<br>
+<br>
+<a class="link" href="/reads/medpatients">Connect a Medication to a Patient</a>
+</div>

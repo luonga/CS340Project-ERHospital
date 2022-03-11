@@ -7,7 +7,7 @@
     <fieldset>
         <legend>Add a connection between a patient and a medication</legend>
 
-        <label for="patientID"> patient ID</label>
+        <label for="patientID"> Patient Name</label>
         <select name="patientID" id="patientID">
             <option value="">Select a Patient</option>
                 {{#each pats}}
@@ -15,7 +15,7 @@
                 {{/each}}
         </select>
 
-        <label for="medID">med ID</label>
+        <label for="medID">Medicine Name</label>
         <select name="medID" id="medID">
             <option value="">Select a Medication</option>
                 {{#each meds}}
