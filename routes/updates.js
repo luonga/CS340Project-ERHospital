@@ -2,6 +2,7 @@
 const express = require('express');
 const db = require('../database/db-connector');
 let updatesRouter = express.Router();
+let alert = require('alert');
 
 //Update a department
 updatesRouter
@@ -152,7 +153,7 @@ updatesRouter
             console.log(inserts)
             db.pool.query(query1, inserts, (error, rows, fields)=>{
                 if(error){
-                    res.sendStatus(400)
+                    alert('This patient has already been assigned this medication')
                 }
                 else{
                     res.status(200).end()

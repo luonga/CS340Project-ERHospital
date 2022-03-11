@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "alert": "^5.0.10",
     "express": "^4.17.2",
     "express-handlebars": "^6.0.2",
     "forever": "^4.0.3",

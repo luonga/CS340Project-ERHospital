@@ -89,7 +89,7 @@ readsRouter
 
                 db.pool.query(query2, function(error, rows, fields){
                     let doctors = rows;
-                    //Display departmentName instead of departmentID on the Doctors page
+                    //Display doctor name instead of doctorID on the Patients page
                     let doctormap = {}
                     doctors.map(doctor => {
                         let id = parseInt(doctor.doctorID, 10);
@@ -248,6 +248,7 @@ readsRouter
 
                 db.pool.query(query2, (error, rows, fields)=>{
                     let doctors = rows;
+                    
 
                     if(error) {
                         res.sendStatus(400)
@@ -325,6 +326,15 @@ readsRouter
 
                 db.pool.query(query2, function(error, rows, fields){
                     let doctors = rows;
+                    let doctormap = {}
+                    doctors.map(doctor => {
+                        let id = parseInt(doctor.doctorID, 10);
+                        doctormap[id] = doctor["firstName"] + " " + doctor["lastName"];
+                    })
+
+                    patients = patients.map(patient => {
+                        return Object.assign(patient, {doctorID: doctormap[patient.doctorID]})
+                    })
                     res.render('patients', {title: 'Patients', data: patients, docs: doctors}); 
                 });
 

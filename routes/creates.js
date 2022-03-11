@@ -2,6 +2,7 @@
 const express = require('express');
 const db = require('../database/db-connector');
 let createsRouter = express.Router();
+let alert = require('alert');
 
 //Create a new department
 createsRouter
@@ -162,8 +163,8 @@ createsRouter
         
             db.pool.query(query1, inserts, function(error, rows, fields){
                 if (error) {
-                    console.log(error)
-                    res.sendStatus(400);
+                    alert('Invalid input.  Verify you selected a patient and a medication and that the patient hasn\'t already been assigned this medication.');
+                    res.redirect('/reads/medpatients');
                 }
         
                 // Redirects to the medpatient read operation to reflect changes.
