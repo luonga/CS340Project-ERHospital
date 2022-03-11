@@ -1,4 +1,4 @@
---Clear any existing database
+-- Clear any existing database
   
 DROP TABLE IF EXISTS MedPatients;
 DROP TABLE IF EXISTS Patients;
@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS Doctors;
 DROP TABLE IF EXISTS Medications;
 DROP TABLE IF EXISTS Departments;
 
---Create the tables.
+-- Create the tables.
 CREATE TABLE Patients (
     patientID int(11) NOT NULL AUTO_INCREMENT,
     doctorID int(11),
@@ -14,7 +14,6 @@ CREATE TABLE Patients (
     lastName varchar(255) NOT NULL,
     birthdate DATE NOT NULL,
     isAdmitted ENUM('True', 'False') NOT NULL,
-    -- isAdmitted TINYINT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (patientID)
 ) ENGINE=InnoDB;
 
@@ -55,7 +54,7 @@ CREATE TABLE MedPatients (
     ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
---Add the relationships between tables.  
+-- Add the relationships between tables.  
 
 ALTER TABLE Patients
 ADD CONSTRAINT fk_pat FOREIGN KEY (doctorID)
@@ -67,7 +66,7 @@ REFERENCES Departments(departmentID) ON DELETE SET NULL;
 
 
 
---Insert dummy values into the Patients table
+-- Insert dummy values into the Patients table
 
 INSERT INTO Departments (departmentName, capacity)
 VALUES ('Radiology', 1000),
