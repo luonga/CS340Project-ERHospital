@@ -5,7 +5,7 @@ SETUP
 
 
 //Express
-const PORT = 2324; 
+const PORT = 8305; 
 const express = require("express");
 const app = express();
 const db = require('./database/db-connector');

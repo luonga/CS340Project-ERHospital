@@ -109,7 +109,7 @@ createsRouter
             }
             
             let doctorID = parseInt(req.body.doctorID)
-            //Handle doctorID if it is not an integer.  
+            //Handle doctorID if it is null.  
             if (req.body.doctorID != '')
             {
                 query1 = `INSERT INTO Patients (firstName, lastName, birthdate, isAdmitted, doctorID) 
@@ -134,11 +134,10 @@ createsRouter
             }
             
             
-            
             db.pool.query(query1, inserts, function(error, rows, fields){
                     if (error) {
-                        console.log(error)
-                        res.sendStatus(400);
+                        alert('Invalid input.');
+                        res.redirect('/reads/patients');
                     }
                     //Redirects to patients read operation to reflect changes.
                     else
