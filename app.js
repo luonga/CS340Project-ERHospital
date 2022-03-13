@@ -5,7 +5,7 @@ SETUP
 
 
 //Express
-const PORT = 8305; 
+const PORT = process.env.PORT || 5001;
 const express = require("express");
 const app = express();
 const db = require('./database/db-connector');
@@ -63,6 +63,4 @@ app.use("/updates", updates);
 
 
 //Listening
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}...`);
-});
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}...`));
